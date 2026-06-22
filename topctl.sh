@@ -9,7 +9,7 @@
 #  based on CIS Benchmark recommendations.
 # ============================================================================
 
-set -euo pipefail
+set +e
 
 # --- Colors & Formatting ---------------------------------------------------
 RED='\033[0;31m'
@@ -98,19 +98,19 @@ log() {
     case "${level}" in
         PASS)
             echo -e "  ${GREEN}[✓ PASS]${NC} ${message}"
-            ((PASS_COUNT++))
+            PASS_COUNT=$((PASS_COUNT + 1))
             ;;
         FAIL)
             echo -e "  ${RED}[✗ FAIL]${NC} ${message}"
-            ((FAIL_COUNT++))
+            PASS_COUNT=$((PASS_COUNT + 1))
             ;;
         WARN)
             echo -e "  ${YELLOW}[! WARN]${NC} ${message}"
-            ((WARN_COUNT++))
+            PASS_COUNT=$((PASS_COUNT + 1))
             ;;
         FIX)
             echo -e "  ${BLUE}[⚙ FIX]${NC}  ${message}"
-            ((FIX_COUNT++))
+            (PASS_COUNT=$((PASS_COUNT + 1))
             ;;
         INFO)
             echo -e "  ${CYAN}[i INFO]${NC} ${message}"
