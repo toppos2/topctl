@@ -15,7 +15,7 @@ check_ssh_setting() {
 
     # Get the effective value (last uncommented occurrence wins)
     local current
-    current=$(grep -i "^${setting}" "${SSHD_CONFIG}" 2>/dev/null | tail -1 | awk '{print $2}')
+    current=$(grep -i "^${setting}" "${SSHD_CONFIG}" 2>/dev/null | tail -1 | awk '{print $2}' || true)
 
     if [[ "${current,,}" == "${expected,,}" ]]; then
         log "PASS" "${description} (${setting} = ${current})"
@@ -84,7 +84,7 @@ run_ssh() {
 
     # --- Check 5: Set MaxAuthTries -------------------------------------------
     local max_auth
-    max_auth=$(grep -i "^MaxAuthTries" "${SSHD_CONFIG}" 2>/dev/null | tail -1 | awk '{print $2}')
+    max_auth=$(grep -i "^MaxAuthTries" "${SSHD_CONFIG}" 2>/dev/null | tail -1 | awk '{print $2}' || true)
     if [[ -n "${max_auth}" && "${max_auth}" -le 4 ]]; then
         log "PASS" "MaxAuthTries is limited (${max_auth})"
     else
@@ -99,7 +99,7 @@ run_ssh() {
 
     # --- Check 7: Set login grace time ---------------------------------------
     local grace
-    grace=$(grep -i "^LoginGraceTime" "${SSHD_CONFIG}" 2>/dev/null | tail -1 | awk '{print $2}')
+    grace=$(grep -i "^LoginGraceTime" "${SSHD_CONFIG}" 2>/dev/null | tail -1 | awk '{print $2}' || true)
     if [[ -n "${grace}" && "${grace}" -le 60 ]]; then
         log "PASS" "LoginGraceTime is limited (${grace}s)"
     else

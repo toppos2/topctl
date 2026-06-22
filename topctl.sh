@@ -102,15 +102,15 @@ log() {
             ;;
         FAIL)
             echo -e "  ${RED}[✗ FAIL]${NC} ${message}"
-            PASS_COUNT=$((PASS_COUNT + 1))
+            FAIL_COUNT=$((FAIL_COUNT + 1))
             ;;
         WARN)
             echo -e "  ${YELLOW}[! WARN]${NC} ${message}"
-            PASS_COUNT=$((PASS_COUNT + 1))
+            WARN_COUNT=$((WARN_COUNT + 1))
             ;;
         FIX)
             echo -e "  ${BLUE}[⚙ FIX]${NC}  ${message}"
-            (PASS_COUNT=$((PASS_COUNT + 1))
+            FIX_COUNT=$((FIX_COUNT + 1))
             ;;
         INFO)
             echo -e "  ${CYAN}[i INFO]${NC} ${message}"
