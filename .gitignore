@@ -1,0 +1,15 @@
+# Reports (contain system-specific info)
+reports/*.txt
+reports/*.log
+reports/*.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
